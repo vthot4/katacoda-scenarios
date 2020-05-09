@@ -1,4 +1,4 @@
-# Kubernetes 101
+# Creando el  clúster de Kubernetes.
 
 En este pequeño laboratorio vamos a ver los conceptos básicos de Kubernetes. Para ello vamos a utilizar **minikube**, una herramienta que nos permite desplegar un clúster de Kubernetes con un único nodo en una máquina virtual. 
 
@@ -43,3 +43,45 @@ Comprobado que minikube esta instalado y operativo, vamos a levantar el clúster
 Si todo ha ido bien, deberíamos tener funcionando un clúster kubernetes en nuestra máquina. Minikube ha levantado una máquina virtual sobre el hypervisor donde ejecuta el clúster.
 
   <img src="../assets/minikube-architecture.png" alt="Introduction to Minikube" style="zoom: 67%;" />
+
+Podemos comprobar el estado de minikube mediante:
+
+`minikube status `{{execute}}
+
+Si todo va bien nos debería aparecer algo parecido a esto:
+
+```bash
+$ minikube status
+host: Running
+kubelet: Running
+apiserver: Running
+kubeconfig: Configured
+```
+
+Para parar el clúster usaremos la opción *stop*:
+
+ `minikube stop `{{execute}}
+
+Desde el punto de vista técnico simplemente estamos parando la máquina virtual, si quisiéramos borrarlo bastaría con:
+
+`minikube delete `{{execute}}
+
+Debemos fijarnos que hemos levantando el entorno por defecto, si queremos proporcionarle más memoria o cpu podemos añadir los siguientes parámetros:
+
+```bash
+ minikube start --cpus 4 --memory 8192
+```
+
+También podemos cambiar el runtime a utilizar, por ejemplo seleccionado ***CRI-O***
+
+```bash
+minikube start \
+    --network-plugin=cni \
+    --enable-default-cni \
+    --container-runtime=cri-o \
+    --bootstrapper=kubeadm
+```
+
+
+
+Podemos encontrar más información en: https://kubernetes.io/docs/setup/learning-environment/minikube/
