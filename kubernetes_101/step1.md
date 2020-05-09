@@ -42,4 +42,4 @@ Comprobado que minikube esta instalado y operativo, vamos a levantar el clúster
 
 Si todo ha ido bien, deberíamos tener funcionando un clúster kubernetes en nuestra máquina. Minikube ha levantado una máquina virtual sobre el hypervisor donde ejecuta el clúster.
 
-  ![Introduction to Minikube](./images/minikube-architecture.jpg )
+  ![Introduction to Minikube](../assets/images/minikube-architecture.jpg)
