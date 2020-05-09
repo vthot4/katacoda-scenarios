@@ -36,8 +36,10 @@ Podemos ver todos las posibilidades que nos ofrece:
 
 `minikube `{{execute}}
 
+Comprobado que minikube esta instalado y operativo, vamos a levantar el clúster mono-nodo:
 
+`minikube start `{{execute}}
 
-crear el clúster mono-nodo:
+Si todo ha ido bien, deberíamos tener funcionando un clúster kubernetes en nuestra máquina. Minikube ha levantado una máquina virtual sobre el hypervisor donde ejecuta el clúster.
 
-crear el clúster mono-nodo:
+  ![Introduction to Minikube](./images/minikube-architecture.jpg )
