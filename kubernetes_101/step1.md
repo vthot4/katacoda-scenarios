@@ -32,9 +32,33 @@ Lo primero que tenemos que hacer es comprobar que minikube esta instalado y func
 
 `minikube version`{{execute}}
 
+Comprobamos que tenemos la última versión de minikube:
+
+`minikube version`{{execute}}
+
+Si vemos que existe alguna versión superior lo actualizaremos de la siguiente forma:
+
+`wget https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64`{{execute}}
+
+`chmod +x minikube-linux-amd64`{{execute}}
+
+`sudo mv minikube-linux-amd64 /usr/local/bin/minikube`{{execute}}
+
+Confirmamos la nueva versión:
+
+`minikube version`{{execute}}
+
 Podemos ver todos las posibilidades que nos ofrece:
 
 `minikube `{{execute}}
+
+Podemos ver algo más de información:
+
+`minikube config view `{{execute}}
+
+Y comprobamos que el demonio de docker se comunica con el demonio de docker dentro de la máquina virtual de minikube:
+
+`docker ps `{{execute}}
 
 Comprobado que minikube esta instalado y operativo, vamos a levantar el clúster mono-nodo:
 
@@ -58,6 +82,24 @@ apiserver: Running
 kubeconfig: Configured
 ```
 
+Para revisar los logs de la ejecución usaremos *minikube logs*
+
+ `minikube log `{{execute}}
+
+
+
+## Complementos de minikube
+
+Minikube dispone de complementos que nos pueden ayudar a administrar el clúster de Kubernetes. Podemos ver la lista de los que dispone por defecto mediante:
+
+ `minikube addons list `{{execute}}
+
+
+
+
+
+## Parar y Borrar el clúster
+
 Para parar el clúster usaremos la opción *stop*:
 
  `minikube stop `{{execute}}
@@ -65,6 +107,10 @@ Para parar el clúster usaremos la opción *stop*:
 Desde el punto de vista técnico simplemente estamos parando la máquina virtual, si quisiéramos borrarlo bastaría con:
 
 `minikube delete `{{execute}}
+
+
+
+## Modificando el arranque por defecto
 
 Debemos fijarnos que hemos levantando el entorno por defecto, si queremos proporcionarle más memoria o cpu podemos añadir los siguientes parámetros:
 
