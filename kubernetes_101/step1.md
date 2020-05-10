@@ -6,7 +6,7 @@ Para evitar problemas con la instalación, hemos optado que estuviera instalado.
 
 > https://kubernetes.io/es/docs/tasks/tools/install-minikube/
 
-Para instalarlo en un entorno Linux, deberemos instalar previamente un hypervisor como  [KVM](http://www.linux-kvm.org/) o [Virtualvox](https://www.virtualbox.org/wiki/Downloads) y el interfaz de línea de comando de kubernetes: [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) .  Una vez cumplidos estos requisitos podemos realizar la instalación de Minikube con:
+Para instalarlo en un entorno Linux, deberemos instalar previamente un hypervisor como  [KVM](http://www.linux-kvm.org/) o [Virtualvox](https://www.virtualbox.org/wiki/Downloads) y el interfaz de línea de comando de Kubernetes: [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) .  Una vez cumplidos estos requisitos podemos realizar la instalación de Minikube con:
 
 ``` bash
 $ curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube 
@@ -34,7 +34,7 @@ Lo primero que tenemos que hacer es comprobar que minikube esta instalado y func
 
 Comprobamos que tenemos la última versión de minikube:
 
-`minikube check-update`{{execute}}
+`minikube update-check`{{execute}}
 
 Si vemos que existe alguna versión superior lo actualizaremos de la siguiente forma:
 
@@ -86,6 +86,16 @@ Para revisar los logs de la ejecución usaremos *minikube logs*
 
  `minikube logs `{{execute}}
 
+minikube también nos proporciona acceso al Dashboard de Kubernetes:
+
+ `minikube dashboard `{{execute}}
+
+Para acceder, seleccionaos en la parte superior del terminal web, pulsar sobre el signo mas y luego pulsar en "Select port to view on Host 1". Escribir 30000, y luego pulsar "Display Port".
+
+Minikube también nos proporciona un comando para poder listar e inspeccionar los servicios de Kubernetes:
+
+`minikube service list `{{execute}}
+
 
 
 ## Complementos de minikube
@@ -94,7 +104,15 @@ Minikube dispone de complementos que nos pueden ayudar a administrar el clúster
 
  `minikube addons list `{{execute}}
 
+Vamos a instalar el complemento *metrics-server* para ver como se añadiría uno. Este complemento nos proporciona una solución para monitorizar kubernetes. 
 
+  `minikube addons enable metrics-server  `{{execute}}
+
+Tardará de 2 a 3 minutos para que podamos tener métricas disponibles. Podemos acceder a ellos:
+
+ `kubectl top node `{{execute}}
+
+`kubectl top pods --all-namespaces `{{execute}}
 
 
 
