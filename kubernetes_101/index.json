@@ -2,7 +2,7 @@
   "title": "Kubernetes 101",
   "description": "Introduccion a Kubernetes",
   "difficulty": "Beginner",
-  "time": "60",
+  "time": "120",
   "details": {
     "steps": [
       {
