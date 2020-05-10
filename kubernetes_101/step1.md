@@ -34,7 +34,7 @@ Lo primero que tenemos que hacer es comprobar que minikube esta instalado y func
 
 Comprobamos que tenemos la última versión de minikube:
 
-`minikube version`{{execute}}
+`minikube check-update`{{execute}}
 
 Si vemos que existe alguna versión superior lo actualizaremos de la siguiente forma:
 
@@ -84,7 +84,7 @@ kubeconfig: Configured
 
 Para revisar los logs de la ejecución usaremos *minikube logs*
 
- `minikube log `{{execute}}
+ `minikube logs `{{execute}}
 
 
 
