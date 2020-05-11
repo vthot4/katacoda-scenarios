@@ -66,5 +66,11 @@ Instalaremos Octant de la siguiente forma:
 
 `dpkg -i octant_0.12.1_Linux-64bit.deb`{{execute}}
 
-`OCTANT_DISABLE_OPEN_BROWSER=true  OCTANT_LISTENER_ADDR=0.0.0.0:8900 octant`{{execute}}
+`$ OCTANT_DISABLE_OPEN_BROWSER=true  OCTANT_LISTENER_ADDR=0.0.0.0:8900 nohup octant &`{{execute}}
+
+
+
+Esta herramienta nos ayudará a comprender cómo se ejecutan las aplicaciones en el clúster de Kubernetes. Podremos visualizar gráficamente las dependencias de los objetos de Kubernetes, redireccionar los puertos locales a un Pod en ejecución, inspeccionar los logs de un Pod, etc...
+
+Octant es una herramienta diseñada para los clientes, lo que significa que los usuarios no tienen que instalar nada en el clúster par comenzar a usarla. Octant usará las credenciales locales del usuario por lo que no nos deberemos de preocupar de dar permisos en Kubernetes. Otro tema muy interesante es que Octant admite múltiples archivos *kubeconfig* por lo que los usuarios pueden cambiar de contexto de forma ágil y sencilla.
 
