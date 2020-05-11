@@ -34,6 +34,18 @@ Podemos ver aquí los componentes que conforman el clúster de Kubernetes.
 
 
 
+## Kubeconfig
+
+Utilizaremos los archivos **kubeconfig** para organizar la información acerca de los clústeres, los usuarios, los Namespaces y los mecanismos de autenticación. La herramienta **kubectl** utilizará estos archivos para hallar la información que necesita para escoger un clúster y comunicarse con el servidor API de un clúster.
+
+Por defecto Kubectl busca un archivo llamado ***config*** en el directorio $HOME/.kube . En nuestro caso:
+
+`cat .kube/config`{{execute}}
+
+Podremos modificar esta ubicación por defecto usando la variable de entorno **KUBECONFIG** o medainte el modificador de kubectl **--kubeconfig**.
+
+
+
 ## Nodos
 
 > Un nodo es un único host. Puede ser una máquina física o virtual. Su trabajo es ejecutar pods, que son la unidad mínima de procesamiento de Kubernetes. Cada nodo de Kubernetes ejecuta varios componentes de Kubernetes, como pueden ser  *kubelet* y *kube proxy*. Los nodos son gestionados por el nodo master. 
