@@ -56,3 +56,15 @@ Podemos usar *"kubectl describe"* para obtener información específica del nodo
 
 
 
+## Octant. Una consola para Kubernetes.
+
+Aunque el Dashboard puede ser una opción valida a nosotros nos gusta particularmente la opción de usar **Octant** del proyecto Tanzu de VMware. Podemos ver información referente al proyecto en: https://github.com/vmware-tanzu/octant
+
+Instalaremos Octant de la siguiente forma:
+
+`wget https://github.com/vmware-tanzu/octant/releases/download/v0.12.1/octant_0.12.1_Linux-64bit.deb`{{execute}}
+
+`dpkg -i octant_0.12.1_Linux-64bit.deb`{{execute}}
+
+`OCTANT_DISABLE_OPEN_BROWSER=true  OCTANT_LISTENER_ADDR=0.0.0.0:8900 octant`{{execute}}
+
