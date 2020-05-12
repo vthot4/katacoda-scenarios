@@ -1,6 +1,6 @@
 # Creando el  clúster de Kubernetes.
 
-En este pequeño laboratorio vamos a ver los conceptos básicos de Kubernetes. Para ello vamos a utilizar **minikube**, una herramienta que nos permite desplegar un clúster de Kubernetes con un único nodo en una máquina virtual. 
+En este pequeño laboratorio vamos a ver los conceptos básicos de Kubernetes. Para ello vamos a utilizar **minikube**, una herramienta que nos permite desplegar un clúster de Kubernetes con un único nodo en una máquina virtual. Nos permitirá aprender y conocer Kubernetes en un entorno sencillo y sin necesidad de muchos recursos. 
 
 Para evitar problemas con la instalación, hemos optado que estuviera instalado. Si queremos ver cual es el procedimiento de instalación en los diferentes entornos podemos recurrir a:
 
@@ -66,7 +66,7 @@ Comprobado que minikube esta instalado y operativo, vamos a levantar el clúster
 
 Si todo ha ido bien, deberíamos tener funcionando un clúster kubernetes en nuestra máquina. Minikube ha levantado una máquina virtual sobre el hypervisor donde ejecuta el clúster.
 
-  <img src="../assets/minikube-architecture.png" alt="Introduction to Minikube" style="zoom: 67%;" />
+  <img src="./assets/minikube-architecture.png" alt="Introduction to Minikube" style="zoom: 67%;" />
 
 Podemos comprobar el estado de minikube mediante:
 
