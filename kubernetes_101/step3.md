@@ -23,5 +23,104 @@ A la hora de desplegar el Pod en el clúster de Kubernetes podemos optar por una
 
 
 
-## Nuestro primer Pod.
+## Desplegando nuestro primer Pod.
 
+Comenzamos desplegando nuestro primer Pod de forma imperativa, simplemente usando el modificador **"run"** de la siguiente forma:
+
+`kubectl run webserver --image=nginx`{{execute}}
+
+Vemos en la salida, que esta forma de ejecutar un Pod está en *DEPRECATED* ya que la opción que usa por defecto no sólo nos esta creando un Pod sino que lo esta asociando a un Deployment. Una entidad superior a la que le podemos aplicar otro tipo de controllers orientados a especificar el comportamiento sistémico del Pod dentro de nuestro clúster.
+
+Podemos ver el Pod que hemos creado y  el deployment mediante:
+
+`kubectl get pods`{{execute}}
+
+`kubectl get deployments`{{execute}}
+
+`kubectl get po,deploy`{{execute}}
+
+Si queremos ver información más detallada usaremos el modificador *"-o wide":
+
+`$ kubectl get pods -o wide`{{execute}}
+
+Imaginemos que no queremos que nos genere el Deployment y simplemente queremos que nos despliegue el Pod. Para ello usaríamos la siguiente sintaxis:
+
+`$ kubectl run --generator=run-pod/v1 webserver2 --image=nginx`{{execute}}
+
+Comprobamos que lo ha hecho correctamente:
+
+`kubectl get pods`{{execute}}
+
+`kubectl get deployments`{{execute}}
+
+Una buena forma de ver la diferencia entre los dos tipos de despliegue es probar a borrar los pods. En el caso del que tiene un deployent asociado, veremos como se reinicia y en el otro simplemente se para. 
+
+```bash
+kubectl delete pod $NAME
+```
+
+
+
+## Propiedades del Pod.
+
+Para obtener información detallada del Pod vamos usar **"describe"**.  Este modificador necesita que le pasemos el tipo de objeto y el nombre del recurso:
+
+`kubectl get pods`{{execute}}
+
+`kubectl describe pod webserver`{{execute}}
+
+En este caso nos debería de mostrar toda la información referente a los dos pods, ya que los dos empiezan por *webserver*.
+
+
+
+## Ejecutar comandos dentro del Pod.
+
+Igual que en los entornos Docker, en Kubernetes podemos lanzar comandos contra los pods. Por ejemplo, en este caso vamos a sacar la configuración que tiene el nginx del webserver2:
+
+`kubectl exec webserver2 cat /etc/nginx/nginx.conf`{{execute}}
+
+Por su puesto, también podemos entrar en modo interactivo para inspeccionar el contenedor que se esta ejecutando:
+
+`kubectl exec webserver2 -it bash`{{execute}}
+
+`hostname`{{execute}}
+
+`cat /etc/etc/nginx/nginx.conf`{{execute}}
+
+Para salir de la consola:
+
+`exit`{{execute}}
+
+
+
+## Viendo los logs de un Pod.
+
+En este momento deberíamos tener desplegados dos pods y lo que vamos a hacer es desplegar otro más. En este caso, optaremos por desplegar un Apache para los que no les guste nginx :), lo haremos de la siguiente forma:
+
+`kubectl run apache --image=httpd --port=8080 --generator=run-pod/v1`{{execute}}
+
+`kubectl get pods`{{execute}}
+
+Para ver los logs del nuevo Pod creado:
+
+`kubectl logs apache`{{execute}}
+
+`kubectl logs apache --tail=10`{{execute}}
+
+Todavía no tenemos configurada la parte de red, pero podemos podemos hacer una prueba usando lo que hemos aprendido hasta ahora. Primero nos vamos a conectar al Pod de Apache:
+
+`kubectl exec apache -it bash`{{execute}}
+
+Ahora vamos a instalar wget:
+
+`apt update -y`{{execute}}
+
+`apt install wget -y`{{exec}}
+
+Ahora lanzamos la prueba del Apache:
+
+`for i in `seq 1 10`;do wget localhost;done`{{execute}}
+
+`exit`{{execute}}
+
+`kubectl logs apache`{{execute}}
