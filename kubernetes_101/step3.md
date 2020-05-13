@@ -6,7 +6,7 @@ Los **Pods** son unos de los conceptos más importantes en Kubernetes, ya que so
 
 El diagrama de arquitectura de un Pod queda reflejado en el siguiente esquema:
 
-<img src="D:\00.REPOS\katacoda-scenarios\kubernetes_101\assets\Pod_architecture.png" alt="image-20200513132919459" style="zoom:50%;" />
+<img src="./assets/Pod_architecture.png" alt="image-20200513132919459" style="zoom:50%;" />
 
 Una característica interesante de los Pods es que son efímeros, con una vida útil normalmente limitada. Al reducir el escalado o actualizar a una nueva versión, los Pods mueren. Es una idea que tenemos que tener clara, cuando un Pod falla o cambia, todo lo que contenía desaparece por lo que nos debemos de apoyar en herramientas externas para poder hacer análisis de *"root cause"* .
 
