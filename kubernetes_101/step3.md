@@ -41,11 +41,11 @@ Podemos ver el Pod que hemos creado y  el deployment mediante:
 
 Si queremos ver información más detallada usaremos el modificador *"-o wide":
 
-`$ kubectl get pods -o wide`{{execute}}
+`kubectl get pods -o wide`{{execute}}
 
 Imaginemos que no queremos que nos genere el Deployment y simplemente queremos que nos despliegue el Pod. Para ello usaríamos la siguiente sintaxis:
 
-`$ kubectl run --generator=run-pod/v1 webserver2 --image=nginx`{{execute}}
+`kubectl run --generator=run-pod/v1 webserver2 --image=nginx`{{execute}}
 
 Comprobamos que lo ha hecho correctamente:
 
@@ -85,7 +85,7 @@ Por su puesto, también podemos entrar en modo interactivo para inspeccionar el 
 
 `hostname`{{execute}}
 
-`cat /etc/etc/nginx/nginx.conf`{{execute}}
+`cat /etc/nginx/nginx.conf`{{execute}}
 
 Para salir de la consola:
 
@@ -115,12 +115,74 @@ Ahora vamos a instalar wget:
 
 `apt update -y`{{execute}}
 
-`apt install wget -y`{{exec}}
+`apt install wget -y`{{execute}}
 
 Ahora lanzamos la prueba del Apache:
 
-`for i in `seq 1 10`;do wget localhost;done`{{execute}}
+`for i in $(seq 1 10);do wget localhost;done`{{execute}}
 
 `exit`{{execute}}
 
 `kubectl logs apache`{{execute}}
+
+
+
+## Kubectl proxy
+
+**Kubectl proxy** nos permitirá acceder al API de Kubernetes, lo levantaremos mediante:
+
+`kubectl proxy --port=8080 &`{{execute}}
+
+Podemos ver el contenido del API:
+
+`curl http://localhost:8080/`{{execute}}
+
+Vamos a hacer algunas sencillas pruebas:
+
+- Comprobamos versión:
+
+`curl http://localhost:8080/version`{{execute}}
+
+- Comprobamos estado:
+
+`curl http://localhost:8080/healthz`{{execute}}
+
+- Mostramos todos los recursos de la API v1
+
+`curl http://localhost:8080/api/v1/`{{execute}}
+
+- Mostrar todos los namespaces:
+
+`curl http://localhost:8080/api/v1/namespaces`{{execute}}
+
+- Mostramos la lista de los Pods del namespace default:
+
+`curl http://localhost:8080/api/v1/namespaces/default/pods`{{execute}}
+
+- Accedemos a la información del Pod:
+
+`curl http://localhost:8080/api/v1/namespaces/default/pods/webserver2`{{execute}}
+
+Y ahora vamos a usar una de las funcionalidades del API para ver lo que el contenedor está exponiendo:
+
+`curl http://localhost:8080/api/v1/namespaces/default/pods/webserver2/proxy`{{execute}} 
+
+Aunque esta es una posibilidad, no es la óptima. Veremos más adelante como los servicios nos ayudarán a hacer esto de forma bastante más sencilla.
+
+
+
+## Borrar Pods.
+
+Para borrar los Pods usaremos el modificador **delete** al que le tendremos que pasar el tipo de recurso y el nombre del mismo. Vamos a ver un ejemplo:
+
+Inicialmente mostramos los Pods desplegados:
+
+`kubect get pods`{{execute}}
+
+Borramos los Pods:
+
+`kubectl delete pod apache`{{execute}}
+
+`kubectl delete pod webserver2`{{execute}}
+
+`kubectl delete deploy webserver`{{execute}}

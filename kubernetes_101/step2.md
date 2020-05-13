@@ -84,7 +84,7 @@ Instalaremos Octant de la siguiente forma:
 
 `dpkg -i octant_0.12.1_Linux-64bit.deb`{{execute}}
 
-`$ OCTANT_DISABLE_OPEN_BROWSER=true  OCTANT_LISTENER_ADDR=0.0.0.0:8900 nohup octant &`{{execute}}
+`OCTANT_DISABLE_OPEN_BROWSER=true  OCTANT_LISTENER_ADDR=0.0.0.0:8900 nohup octant &`{{execute}}
 
 Para acceder, seleccionaos en la parte superior del terminal web, pulsar sobre el signo mas y luego pulsar en "Select port to view on Host 1". Escribir 8900, y luego pulsar "Display Port".
 
