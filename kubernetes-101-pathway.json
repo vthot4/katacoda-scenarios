@@ -21,5 +21,6 @@
       "course_id": "kubernetes-101-04",
       "title": "Deployments",
       "description": "Introducción a los Deployments"
+    }
   ]
 }
