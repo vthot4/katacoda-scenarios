@@ -1,4 +1,4 @@
-## Viendo los logs de un Pod.
+# Viendo los logs de un Pod.
 
 En este momento deberíamos tener desplegados dos pods y lo que vamos a hacer es desplegar otro más. En este caso, optaremos por desplegar un Apache para los que no les guste nginx :), lo haremos de la siguiente forma:
 

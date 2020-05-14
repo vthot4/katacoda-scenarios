@@ -1,4 +1,23 @@
-## ¿Qué es un Pod?
+# ¿Qué es un Pod?
+
+## Requisitos
+
+git clone https://github.com/vthot4/kubernetes_101_lab.git`{{execute}}
+
+`cd kubernetes_101_lab/`{{execute}}
+
+`chmod +x environment.sh`{{execute}}
+
+`./environment.sh`{{execute}}
+
+`cd`{{execute}}
+
+Comprobamos que todo esta correcto:
+
+`minikube status`{{execute}}
+
+
+## Introducción
 
 Los **Pods** son unos de los conceptos más importantes en Kubernetes, ya que son los objetos claves con los que interactúan los desarrolladores.  Un Pod será la unidad de ejecución básica de una aplicación Kubernetes, la unidad más pequeña y simple en el modelo de objetos que crea o implementa Kubernetes. El Pod encapsula el contenedor (ó contenedores) de una aplicación junto con los recursos de almacenamiento, red y las reglas de ejecución.   
 
@@ -17,9 +36,13 @@ Existen dos tipos de modelos de Pod que podemos crear:
 
 A la hora de desplegar el Pod en el clúster de Kubernetes podemos optar por una vía imperativa en la que lo desplegamos directamente o declarativa mediante un fichero tipo **yaml** en el que le decimos al clúster como queremos que despliegue nuestro Pod. La primera opción suele estar bien para entornos de desarrollo pero no es buena opción para producción. 
 
-![](./assets/Deply_aplication_Pod.png)
+![flujo](./assets/Deply_aplication_Pod.png)
 
 ## Desplegando nuestro primer Pod.
+
+Levantamos el clúster:
+
+`minikube start`{{execute}}
 
 Comenzamos desplegando nuestro primer Pod de forma imperativa, simplemente usando el modificador **"run"** de la siguiente forma:
 

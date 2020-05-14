@@ -1,4 +1,4 @@
-## Kubectl proxy
+# Kubectl proxy
 
 **Kubectl proxy** nos permitirá acceder al API de Kubernetes, lo levantaremos mediante:
 
@@ -36,6 +36,6 @@ Vamos a hacer algunas sencillas pruebas:
 
 Y ahora vamos a usar una de las funcionalidades del API para ver lo que el contenedor está exponiendo:
 
-`curl http://localhost:8080/api/v1/namespaces/default/pods/webserver2/proxy`{{execute}} 
+`curl http://localhost:8080/api/v1/namespaces/default/pods/webserver2/proxy/`{{execute}} 
 
 Aunque esta es una posibilidad, no es la óptima. Veremos más adelante como los servicios nos ayudarán a hacer esto de forma bastante más sencilla.

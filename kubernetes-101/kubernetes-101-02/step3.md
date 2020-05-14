@@ -1,4 +1,4 @@
-## Ejecutar comandos dentro del Pod.
+# Ejecutar comandos dentro del Pod.
 
 Igual que en los entornos Docker, en Kubernetes podemos lanzar comandos contra los pods. Por ejemplo, en este caso vamos a sacar la configuración que tiene el nginx del webserver2:
 

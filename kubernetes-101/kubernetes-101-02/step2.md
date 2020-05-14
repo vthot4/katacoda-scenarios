@@ -1,4 +1,4 @@
-## Propiedades del Pod.
+# Propiedades del Pod.
 
 Para obtener información detallada del Pod vamos usar **"describe"**.  Este modificador necesita que le pasemos el tipo de objeto y el nombre del recurso:
 
