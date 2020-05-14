@@ -15,7 +15,7 @@
     {
       "course_id": "kubernetes-101-03",
       "title": "Pods multinodo",
-      "description": "Introducción a los Pods multinodo"
+      "description": "Introducción a los Pods multi-containers"
     }
   ]
 }
