@@ -1,4 +1,4 @@
-# Pod 101. Multi contenedores en un Pod.
+# Multi contenedores en un Pod.
 
 ## Requisitos
 
@@ -29,9 +29,17 @@ El propósito principal de un Pod multi-contenedor es admitir procesos auxiliare
 - **Sidecars containers.** Normalmente destinas a ayudar al contenedor principal
 - **Proxies,bridges,and adapters.** Normalmente conectan el contenedor principal con el mundo externo. Por ejemplo, el servidor Apache HTTP o nginx puede servir archivos estáticos. También puede actuar como un proxy inverso a una aplicación web en el contenedor principal para registrar y limitar las solicitudes HTTP. Otro ejemplo es un contenedor auxiliar que redirige las solicitudes del contenedor principal al mundo externo.
 
+
+
+## Desplegando un Pod multi container.
+
+El ejemplo que vamos a desplegar es el siguiente compuesto de dos containers. Uno con nginx y otro con Apache. El esquema es el siguiente:
+
 ![multi-pod](./assets/Multi-pod.png)
 
+En este ejemplo, definimos un volumen llamado html . Su tipo es emptyDir , lo que significa que el volumen se crea por primera vez cuando se asigna un Pod a un nodo, y existe mientras ese Pod se esté ejecutando en ese nodo. Como su nombre lo dice, inicialmente está vacío. El primer contenedor ejecuta el servidor nginx y tiene el volumen compartido montado en el directorio / usr / share / nginx / html . El segundo contenedor usa la imagen de Debian y tiene el volumen compartido montado en el directorio / html . Cada segundo, el segundo contenedor agrega la fecha y hora actuales al index.htmlarchivo, que se encuentra en el volumen compartido. Cuando el usuario realiza una solicitud HTTP al Pod, el servidor Nginx lee este archivo y lo transfiere al usuario en respuesta a la solicitud.
 
+En el siguiente yaml podemos ver el despliegue que vamos a hacer.
 
 ```yaml
 apiVersion: v1
@@ -61,20 +69,26 @@ spec:
         done
 ```
 
-
+Como en el caso anterior, vamos a hacer el despliegue con el modificador "create":
 
 `kubectl create -f kubernetes_101_lab/pod/lab1/multipod.yaml`{{execute}}
 
-
-
-En este ejemplo, definimos un volumen llamado html . Su tipo es emptyDir , lo que significa que el volumen se crea por primera vez cuando se asigna un Pod a un nodo, y existe mientras ese Pod se esté ejecutando en ese nodo. Como su nombre lo dice, inicialmente está vacío. El primer contenedor ejecuta el servidor nginx y tiene el volumen compartido montado en el directorio / usr / share / nginx / html . El segundo contenedor usa la imagen de Debian y tiene el volumen compartido montado en el directorio / html . Cada segundo, el segundo contenedor agrega la fecha y hora actuales al index.htmlarchivo, que se encuentra en el volumen compartido. Cuando el usuario realiza una solicitud HTTP al Pod, el servidor Nginx lee este archivo y lo transfiere al usuario en respuesta a la solicitud.
+Comprobamos el estado de los Pods:
 
 `kubectl get pods`{{execute}}
 
+Comprobamos las características del despliegue:
+
 `kubectl describe multipod`{{execute}}
 
-
+Comprobamos que funciona correctamente mediante:
 
 `kubectl exec multipod -c uno -- /bin/cat /usr/share/nginx/html/index.html `{{execute}}
 
 `kubectl exec multipod -c dos -- /bin/cat /html/index.html`{{execute}}
+
+Borramos el Pod
+
+`kubectl delete pod multipod`{{execute}}
+
+`kubectl get pods`{{execute}} 
