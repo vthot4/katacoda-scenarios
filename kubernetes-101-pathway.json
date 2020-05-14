@@ -11,6 +11,11 @@
       "course_id": "kubernetes-101-02",
       "title": "Pods",
       "description": "Introducción a los Pods"
+    },
+    {
+      "course_id": "kubernetes-101-03",
+      "title": "Pods multinodo",
+      "description": "Introducción a los Pods multinodo"
     }
   ]
 }
