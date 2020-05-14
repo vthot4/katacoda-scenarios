@@ -1,0 +1,11 @@
+{
+  "title": "Kubernetes",
+  "description": "Curso Introducción Kubernetes",
+  "courses": [
+    {
+      "course_id": "kubernetes-101-01",
+      "title": "Introduccion",
+      "description": "Introduccion a minikube"
+    }
+  ]
+}
