@@ -17,6 +17,12 @@ Comprobamos que todo esta correcto:
 `minikube status`{{execute}}
 
 
+
+Abrimos Octant. Para acceder, seleccionaos en la parte superior del terminal web, pulsar sobre el signo mas y luego pulsar en "Select port to view on Host 1". Escribir 8900, y luego pulsar "Display Port".
+
+
+
+
 ## Introducción
 
 Los **Pods** son unos de los conceptos más importantes en Kubernetes, ya que son los objetos claves con los que interactúan los desarrolladores.  Un Pod será la unidad de ejecución básica de una aplicación Kubernetes, la unidad más pequeña y simple en el modelo de objetos que crea o implementa Kubernetes. El Pod encapsula el contenedor (ó contenedores) de una aplicación junto con los recursos de almacenamiento, red y las reglas de ejecución.   
@@ -39,10 +45,6 @@ A la hora de desplegar el Pod en el clúster de Kubernetes podemos optar por una
 ![flujo](./assets/Deply_aplication_Pod.png)
 
 ## Desplegando nuestro primer Pod.
-
-Levantamos el clúster:
-
-`minikube start`{{execute}}
 
 Comenzamos desplegando nuestro primer Pod de forma imperativa, simplemente usando el modificador **"run"** de la siguiente forma:
 
