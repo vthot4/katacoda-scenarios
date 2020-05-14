@@ -2,7 +2,7 @@
 
 ## Requisitos
 
-git clone https://github.com/vthot4/kubernetes_101_lab.git`{{execute}}
+`git clone https://github.com/vthot4/kubernetes_101_lab.git`{{execute}}
 
 `cd kubernetes_101_lab/`{{execute}}
 
