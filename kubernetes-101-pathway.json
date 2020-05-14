@@ -1,25 +1,25 @@
 {
-  "title": "Kubernetes",
+  "title": "Kubernetes 101",
   "description": "Curso Introducción Kubernetes",
   "courses": [
     {
       "course_id": "kubernetes-101-01",
-      "title": "Introduccion",
+      "title": "01. Introduccion",
       "description": "Introduccion a minikube"
     },
     {
       "course_id": "kubernetes-101-02",
-      "title": "Pods",
+      "title": "02. Pods",
       "description": "Introducción a los Pods"
     },
     {
       "course_id": "kubernetes-101-03",
-      "title": "Pods multi-containers",
+      "title": "03. Pods multi-containers",
       "description": "Introducción a los Pods multi-containers"
     },
     {
       "course_id": "kubernetes-101-04",
-      "title": "Deployments",
+      "title": "04. Deployments",
       "description": "Introducción a los Deployments"
     }
   ]
