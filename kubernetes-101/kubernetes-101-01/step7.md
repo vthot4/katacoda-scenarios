@@ -6,7 +6,7 @@ Aunque Katakoda no permite levantar un segundo clúster en la máquina que despl
 minikube start -p dev
 ```
 
-Para ver la lista de clusters que tenemos creada usaremos la opción *"profile lsit"*:
+Para ver la lista de clusters que tenemos creada usaremos la opción *"profile list"*:
 
 `minikube profile list`{{execute}}
 

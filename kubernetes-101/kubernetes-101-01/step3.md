@@ -5,11 +5,6 @@
 > Un clúster es una colección de recursos de cómputo, almacenamiento y redes que Kubernetes usa para ejecutar las diversas cargas de trabajo que componen su sistema.
 
 
-
-Comenzaremos levantando el entorno de minikube.
-
-`minikube start`{{execute}}
-
 Una vez arrancado vamos a ver los detalles del clúster que hemos creado mediante *kubectl cluster-info*:
 
 `kubectl cluster-info`{{execute}}

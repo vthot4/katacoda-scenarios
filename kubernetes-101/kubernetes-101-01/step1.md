@@ -68,3 +68,5 @@ Si todo ha ido bien, deberíamos tener funcionando un clúster kubernetes en nue
 
 ![image-20200514194723445](./assets/minikube-architecture.png)
 
+Comprobamos el estado del clúster:
+`minikube status`{{execute}}
