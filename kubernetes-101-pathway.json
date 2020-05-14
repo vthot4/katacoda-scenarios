@@ -6,6 +6,11 @@
       "course_id": "kubernetes-101-01",
       "title": "Introduccion",
       "description": "Introduccion a minikube"
+    },
+    {
+      "course_id": "kubernetes-101-02",
+      "title": "Pods",
+      "description": "Introducción a los Pods"
     }
   ]
 }
