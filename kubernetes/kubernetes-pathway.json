@@ -1,0 +1,11 @@
+{
+  "title": "Kubernetes",
+  "description": "Introducción Kubernetes",
+  "courses": [
+    {
+      "course_id": "",
+      "title": "Introducción",
+      "description": "Primeros pasos con minikube"
+    }
+  ]
+}
