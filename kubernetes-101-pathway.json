@@ -16,6 +16,10 @@
       "course_id": "kubernetes-101-03",
       "title": "Pods multi-containers",
       "description": "Introducción a los Pods multi-containers"
-    }
+    },
+    {
+      "course_id": "kubernetes-101-04",
+      "title": "Deployments",
+      "description": "Introducción a los Deployments"
   ]
 }
