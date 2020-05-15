@@ -21,6 +21,11 @@
       "course_id": "kubernetes-101-04",
       "title": "04. Deployments",
       "description": "Introducción a los Deployments"
+    },
+    {
+      "course_id": "kubernetes-101-05",
+      "title": "05. Services",
+      "description": "Introducción a los Services"
     }
   ]
 }
