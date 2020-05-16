@@ -1,7 +1,12 @@
-# Eliminando un deployment
+# Establecer un namespace por defecto.
 
-Para borrar un deployment simplemente:
+Podemos indicar en un determinado contexto (un contexto determina el cluter y el usuario que podemos utilizar) un namespace, de tal manera que cuando utilicemos dicho contexto se va a utilizar el namespace indicado, y no será necesario indicarlo con la opción -n. Para ello es necesario determinar el contexto en el que estamos trabajando:
 
-`kubectl delete deployment nginx-deployment`{{execute}}
+`kubectl config current-context`{{execute}}
 
-`kubectl get deployments`{{execute}}
+Para modificar el contexto actual:
+
+`kubectl config set-context kubernetes-admin@kubernetes --namespace=produccion`{{execute}}
+
+`kubectl config current-context`{{execute}}
+

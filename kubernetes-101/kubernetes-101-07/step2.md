@@ -1,34 +1,56 @@
-## Actualizando el deployment
+# Creando/Borrando namespaces
 
-Vamos actualizar el deployment para que despliegue la imagen nginx 1.8. Para ello usaremos el siguiente yaml:
+**CREANDO NAMESPACES**
 
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-deployment
-spec:
-  selector:
-    matchLabels:
-      app: nginx
-  replicas: 2
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:1.8 # Actualiza la versión de nginx de 1.7.9 a 1.8
-        ports:
-        - containerPort: 80
+Podemos crear namespaces mediante de dos formas:
 
-```
+- Mediante comandos (modo imperativo):
 
-Para aplicar el update:
+  `kubectl create namespace desarrollo`{{execute}}
 
-`kubectl apply -f kubernetes_101_lab/deplyment/lab1/deployment-update.yaml`{{execute}}
+  `kubectl get namespaces`{{execute}}
 
-Podemos comprobar como el deployment crea unos nuevos Pods con la nueva imagen mientras va eliminando los Pods con especificación antigua.
+- Mediante el uso de un fichero *yaml* (modo declarativo):
 
-`kubectl get pods -l app=nginx`{{execute}}
+  ```yaml
+  kind: Namespace
+  apiVersion: v1
+  metadata:
+    name: produccion
+  ```
+
+  `kubectl apply -f kubernetes_101_lab/namespace/lab1/produccion-namespace.yaml`{{execute}}
+  
+  `kubectl get namespaces`{{execute}}
+  
+  Podemos ver los Pods de nuestro nuevo namespace:
+  
+  `kubectl get pods -n produccion`{{execute}}
+
+
+
+## Información del namespace
+
+Podemos ver las características del namespace creado:
+
+`kubectl describe namespace produccion`{{execute}}
+
+`kubectl describe ns produccion`{{execute}}
+
+También podemos obtener su definición yaml:
+
+`kubectl et ns produccion -o yaml`{{execute}}
+
+
+
+**BORRANDO NAMESPACES**
+
+Para borrar los namespaces podemos optar, otra vez por las dos vías:
+
+- Vía comandos:
+
+  `kubectl delete namespace desarrollo`{{execute}}
+
+- Vía fichero *yaml*:
+
+  `kubectl delete -f kubernetes_101_lab/namespace/lab1/produccion-namespace.yaml`{{execute}}

@@ -1,0 +1,1 @@
+# Poner CPU y memoria a los namespaces

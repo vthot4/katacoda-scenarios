@@ -1,7 +1,6 @@
-# Deployment 101
+# Namespaces 101
 
 **OBJETIVOS**
 
-- Entender el concepto de deployment.
-- Aprender a crear Deployments.
-- Actualizar deployments.
+- Entender el concepto de Namespaces.
+- Primeros pasos con Namespaces.
