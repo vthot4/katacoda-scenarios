@@ -19,7 +19,7 @@ spec:
   selector:   
     matchLabels:
       app: elastic
-  replicas: 2
+  replicas: 1
   strategy:
      type: RollingUpdate
   minReadySeconds: 2
@@ -41,14 +41,13 @@ Para desplegar ejecutamos:
 
 Podemos ver como lo ha creado en nuestro namespace:
 
+`kubectl get pods -n desarrollo`{{execute}}
 
+`kubectl describe pods elastic -n desarrollo`{{execute}}
 
- 
+Para terminar, borramos el deploy:
 
+`kubectl delete deploy elastic -n desarrollo`{{execute}}
 
+`kubectl get deploy -n desarrollo`{{execute}}
 
-
-
-
-
-kubectl run nginx --image=nginx --port=80 --generator=run-pod/v1 -n produccion

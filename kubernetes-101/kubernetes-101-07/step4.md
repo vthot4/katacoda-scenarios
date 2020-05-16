@@ -4,9 +4,27 @@ Podemos indicar en un determinado contexto (un contexto determina el cluter y el
 
 `kubectl config current-context`{{execute}}
 
+Vemos que se corresponde con la confguración que tenemos en el config:
+
+`kubectl config view`{{execute}}
+
 Para modificar el contexto actual:
 
-`kubectl config set-context kubernetes-admin@kubernetes --namespace=produccion`{{execute}}
+`kubectl config set-context --current --namespace=produccion`{{execute}}
 
 `kubectl config current-context`{{execute}}
 
+Podemos ver como el namespace lo ha modificado:
+
+```yaml
+- context:
+    cluster: minikube
+    namespace: produccion
+    user: minikube
+  name: minikube
+current-context: minikube
+```
+
+Si ahora vemos los Pods que están corriendo:
+
+`kubectl get pods`{{execute}}
