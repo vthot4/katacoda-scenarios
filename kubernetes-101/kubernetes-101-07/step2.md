@@ -1,6 +1,6 @@
 # Creando/Borrando namespaces
 
-**CREANDO NAMESPACES**
+## CREANDO NAMESPACES
 
 Podemos crear namespaces mediante de dos formas:
 
@@ -43,7 +43,7 @@ También podemos obtener su definición yaml:
 
 
 
-**BORRANDO NAMESPACES**
+## BORRANDO NAMESPACES
 
 Para borrar los namespaces podemos optar, otra vez por las dos vías:
 
