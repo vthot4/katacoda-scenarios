@@ -28,3 +28,9 @@ current-context: minikube
 Si ahora vemos los Pods que están corriendo:
 
 `kubectl get pods`{{execute}}
+
+Para terminar, borramos el deploy:
+
+`kubectl delete deploy elastic -n desarrollo`{{execute}}
+
+`kubectl get deploy -n desarrollo`{{execute}}

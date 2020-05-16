@@ -45,9 +45,5 @@ Podemos ver como lo ha creado en nuestro namespace:
 
 `kubectl describe pods elastic -n desarrollo`{{execute}}
 
-Para terminar, borramos el deploy:
 
-`kubectl delete deploy elastic -n desarrollo`{{execute}}
-
-`kubectl get deploy -n desarrollo`{{execute}}
 

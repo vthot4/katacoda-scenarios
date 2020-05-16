@@ -36,17 +36,17 @@ Desplegamos:
 
 Comprobamos que los límites se han aplicado:
 
-`kubectl describe namespace test`{{test}}
+`kubectl describe namespace test`{{execute}}
 
 Para comprobar que los Pods se nos crean con esas limitaciones de recursos, vamos a desplegar de forma imperativa un nginx:
 
-`kubectl run nginx --image=nginx -n produccion`{{execute}}
+`kubectl run nginx --image=nginx -n test`{{execute}}
 
-`kubectl get pods -n produccion`{{execute}}
+`kubectl get pods -n test`{{execute}}
 
 Comprobamos las características del pod:
 
-`kubectl describe pod nginx -n produccion`{{execute}}
+`kubectl describe pod nginx -n test`{{execute}}
 
 
 
