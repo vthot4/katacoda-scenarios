@@ -1,6 +1,6 @@
 {
-  "title": "Labels y selectors",
-  "description": "Introducción a los labels y selectors",
+  "title": "Almacenamiento",
+  "description": "Introducción al almacenameinto en Kubernetes",
   "difficulty": "Beginner",
   "time": "60 minutes",
   "details": {
