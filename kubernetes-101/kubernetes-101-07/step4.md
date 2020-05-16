@@ -10,7 +10,7 @@ Vemos que se corresponde con la confguración que tenemos en el config:
 
 Para modificar el contexto actual:
 
-`kubectl config set-context --current --namespace=produccion`{{execute}}
+`kubectl config set-context --current --namespace=desarrollo`{{execute}}
 
 `kubectl config current-context`{{execute}}
 
@@ -19,7 +19,7 @@ Podemos ver como el namespace lo ha modificado:
 ```yaml
 - context:
     cluster: minikube
-    namespace: produccion
+    namespace: desarrollo
     user: minikube
   name: minikube
 current-context: minikube
