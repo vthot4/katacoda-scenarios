@@ -39,7 +39,7 @@ Podemos ver las características del namespace creado:
 
 También podemos obtener su definición yaml:
 
-`kubectl et ns produccion -o yaml`{{execute}}
+`kubectl get ns produccion -o yaml`{{execute}}
 
 
 
@@ -54,3 +54,7 @@ Para borrar los namespaces podemos optar, otra vez por las dos vías:
 - Vía fichero *yaml*:
 
   `kubectl delete -f kubernetes_101_lab/namespace/lab1/produccion-namespace.yaml`{{execute}}
+
+Comprobamos que se han borrado correctamente:
+
+`kubectl get namespaces`{{execute}}
