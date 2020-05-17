@@ -1,7 +1,6 @@
-# Deployment 101
+# SERVICES 101
 
 **OBJETIVOS**
 
-- Entender el concepto de deployment.
-- Aprender a crear Deployments.
-- Actualizar deployments.
+- Entender el concepto de services.
+- Aprender a crear services.

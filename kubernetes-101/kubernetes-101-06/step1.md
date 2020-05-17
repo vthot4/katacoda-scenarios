@@ -1,4 +1,4 @@
-# Deployment
+# SERVICES 101
 
 
 
@@ -25,59 +25,16 @@ Abrimos Octant. Para acceder, seleccionaos en la parte superior del terminal web
 
 ## Introducción
 
+Un servicio de Kubernetes es un recurso que crea para crear un único punto de entrada constante a un grupo de Pods que proporcionan el mismo servicio. Cada servicio tiene una dirección IP y un puerto que nunca cambian mientras el servicio existe. Los clientes pueden abrir conexiones a esa IP y puerto, y esas conexiones se enrutan a uno de los Pods que respaldan ese servicio. De esta manera, los clientes de un servicio no necesitan conocer la ubicación de los Pods individuales que brindan el servicio, lo que permite que esos Pods se muevan alrededor del clúster en cualquier momento.
 
 
 
 
 
+### Tipos de Servicios.
 
-## Creando nuestro primer deployment.
 
-En el siguiente ejemplo vamos crear un deployment que nos permitirá desplegar una imágen de Docker nginx:1.7.9
 
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-deployment
-spec:
-  selector:
-    matchLabels:
-      app: nginx
-  replicas: 2 # indica al controlador que ejecute 2 pods
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:1.7.9
-        ports:
-        - containerPort: 80
-```
-
-Podemos verlo en la máquina:
-
-`cat kubernetes_101_lab/deplyment/lab1/deployment.yaml`{{execute}}
-
-Desplegamos el deployment mediante: 
-
-`kubectl apply -f kubernetes_101_lab/deplyment/lab1/deployment.yaml`{{execute}}
-
-Vemos la información asociada al deployment:
-
-`kubectl get deploy`{{execute}}
-
-`kubectl describe deployment nginx-deployment`{{execute}}
-
-Vamos a listar los Pods creados por el deployment usando para ello el label *app=nginx*
-
-`kubectl get pods -l app=nginx`{{execute}}
-
-Podemos obtener información de cualquiera de los pod mediante describe
-
-```bash
-kubectl describe pod <pod-name>
-```
-
+- **ClusterIP.** Sólo permite el acceso interno entre distintos servicios. Es el tipo por defecto. Podemos acceder desde el exterior usando *kubectl proxy*.
+- **NodePort.** Nos abre un puerto, para que el servicio sea accesible desde el exterior. Pod defecto, el puerto generado está en el rango de 30000:40000. Para acceder usamos la IP del servidor master del clúster y el puerto asignado.
+- **LoadBalancer.** 

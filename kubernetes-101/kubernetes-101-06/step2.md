@@ -1,34 +1,33 @@
-## Actualizando el deployment
+# Creando nuestro primer servicio.
 
-Vamos actualizar el deployment para que despliegue la imagen nginx 1.8. Para ello usaremos el siguiente yaml:
+vamos a lanzar un deployment:
 
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-deployment
-spec:
-  selector:
-    matchLabels:
-      app: nginx
-  replicas: 2
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:1.8 # Actualiza la versión de nginx de 1.7.9 a 1.8
-        ports:
-        - containerPort: 80
+`kubectl apply -f kubernetes_101_lab/services/lab1/deploy.yaml`{{execute}}
 
-```
+`kubectl get po,deploy`{{execute}}
 
-Para aplicar el update:
+vamos a crear el servicio de modo imperativo
 
-`kubectl apply -f kubernetes_101_lab/deplyment/lab1/deployment-update.yaml`{{execute}}
+``kubectl expose deployment webserver --name=webserver-svc --target-port=80 --type=NodePort`{{execute}}
 
-Podemos comprobar como el deployment crea unos nuevos Pods con la nueva imagen mientras va eliminando los Pods con especificación antigua.
+Para comprobarlo:
 
-`kubectl get pods -l app=nginx`{{execute}}
+`kubectl get svc`{{execute}}
+
+`kubectl describe service webserver-svc`{{execute}}
+
+Podemos hacer la prueba de escalar:
+
+`kubectl scale --replicas=3 deployment/webserver`{{execute}}
+
+`kubectl describe service webserver-svc`{{execute}}
+
+`minikube ip`{{execute}}
+
+
+
+export CLUSTER_IP=$(kubectl get services/webserver-svc -o go-template='{{(index .spec.clusterIP)}}') 
+
+echo CLUSTER_IP=$CLUSTER_IP 
+
+curl $CLUSTER_IP:80

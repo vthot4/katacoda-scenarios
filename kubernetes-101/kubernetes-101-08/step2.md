@@ -1,34 +1,74 @@
-## Actualizando el deployment
+# Volúmenes locales.
 
-Vamos actualizar el deployment para que despliegue la imagen nginx 1.8. Para ello usaremos el siguiente yaml:
+Vamos a ver una forma de mapear algunos directorios locales en el los Pods. Esta no es una forma adecuada para hacerlo pero nos servirá para ir entendiendo un poco como funcionan los volumens.
+
+Para esta primera prueba vamos a usar el sigueinte yaml:
+
+`cat kubernetes_101_lab/volumenes/lab1/volume.yaml`{{execute}}
 
 ```yaml
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Pod
 metadata:
-  name: nginx-deployment
+  name: volumenes
 spec:
-  selector:
-    matchLabels:
-      app: nginx
-  replicas: 2
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:1.8 # Actualiza la versión de nginx de 1.7.9 a 1.8
-        ports:
-        - containerPort: 80
-
+  containers:
+  - name: nginx
+    image: nginx
+    volumeMounts:
+    - mountPath: /home
+      name: home
+    - mountPath: /git
+      name: git
+      readOnly: true
+    - mountPath: /temp
+      name: temp
+  volumes:
+  - name: home
+    hostPath:
+      path: /root/datos
+  - name: git
+    gitRepo:
+      repository: https://github.com/vthot4/kubernetes_101_lab.git
+  - name: temp
+    emptyDir: {}$
 ```
 
-Para aplicar el update:
+Antes de hacer el despliegue vamos a crear el directorio datos, aunque no es necesario, porque si tiene permisos y no existe lo creará el durante la ejecución.
 
-`kubectl apply -f kubernetes_101_lab/deplyment/lab1/deployment-update.yaml`{{execute}}
+`mkdir datos`{{execute}}
 
-Podemos comprobar como el deployment crea unos nuevos Pods con la nueva imagen mientras va eliminando los Pods con especificación antigua.
+Desplegamos la prueba:
 
-`kubectl get pods -l app=nginx`{{execute}}
+`kubectl apply -f kubernetes_101_lab/volumenes/lab1/volume.yaml`{{execute}}
+
+`kubectl get pods`{{execute}}
+
+`kubectl describe pods volumenes`{{execute}}
+
+Vemos que los volumenes están creados, pero vamos a ver dentro del Pod:
+
+`kubectl exec -it volumenes bash`{{execute}}
+
+`cd git`{{execute}}
+
+`cd /home/`{{execute}}
+
+Probamos el mapeo del directorio:
+
+`touch prueba`{{execute}}
+
+`exit`{{execute}}
+
+`cd datos`{{execute}}
+
+`ls -lar`{{execute}}
+
+Para ver que los datos persisten:
+
+`kubectl delete pod volume`{{execute}}
+
+Esta no es una forma óptima porque al Pod se le asigna un directorio de la máqiuna local. En un clúster tendríamos que ver la forma de que la información estuvierá sincronizada entre todos los nodos :).
+
+
+

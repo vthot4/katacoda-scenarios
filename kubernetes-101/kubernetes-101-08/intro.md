@@ -1,7 +1,8 @@
-# Deployment 101
+# Almacenameinto 101
 
 **OBJETIVOS**
 
-- Entender el concepto de deployment.
-- Aprender a crear Deployments.
-- Actualizar deployments.
+- Entender el concepto de almacenamiento en Kubernetes.
+- Usar algunos tipos de almacenamiento.
+- Persistent Volumes
+- Persistent Volumes Claim
