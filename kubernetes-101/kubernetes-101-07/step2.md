@@ -27,6 +27,10 @@ Podemos crear namespaces mediante de dos formas:
   
   `kubectl get pods -n produccion`{{execute}}
 
+Si queremos ver todos los Pods de todos los namespaces:
+
+`kubectl get pods --all-namespaces`{{execute}}
+
 
 
 ## Información del namespace
