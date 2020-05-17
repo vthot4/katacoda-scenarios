@@ -30,5 +30,9 @@ Aplicamos los cambios de escalado:
 
 `kubectl get pods -l app=nginx`{{execute}}
 
+También podíamos haber escalado usando directamente la consola:
 
+`kubectl scale --replicas=10 deployment/nginx-deployment`{{execute}}
+
+`kubectl get pods`{{execute}}
 

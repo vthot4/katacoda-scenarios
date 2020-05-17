@@ -35,12 +35,6 @@ Podemos comprobar como el deployment crea unos nuevos Pods con la nueva imagen m
 
 `kubectl describe pods nginx`{{execute}}
 
-También podíamos haber escalado usando directamente la consola:
-
-`kubectl scale --replicas=10 deployment/nginx-deployment`{{execute}}
-
-`kubectl get pods`{{execute}}
-
 Podemos ver como los pods tienen la nueva versión:
 
 `kubectl describe pods nginx`{{execute}}

@@ -1,34 +1,33 @@
-# Escalando la aplicación aumentando el número de replicas.
+## SELECTOR
 
-Podemos aumentar el número de pods en nuestro deployment aplicando un nuevo fichero yaml como este:
+Para hacer la prueba vamos a usar cuatro despliegues:
 
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-deployment
-spec:
-  selector:
-    matchLabels:
-      app: nginx
-  replicas: 4 # Actualiza el número de réplicas de 2 a 4
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:1.8
-        ports:
-        - containerPort: 80
-```
+- tomcat
+- tomcat1
+- tomcat2
+- tomcat3
 
-Aplicamos los cambios de escalado:
+Desplegamos todos mediante:
 
-`kubectl apply -f kubernetes_101_lab/deplyment/lab1/deployment-scale.yaml`{{execute}}
+`cd kubernetes_101_lab/labels/lab1/`{{execute}}
+`kubectl apply -f .`{{execute}}
 
-`kubectl get pods -l app=nginx`{{execute}}
+Veamos todas las etiquetas:
 
+`kubectl get pods --show-labels`{{execute}}
 
+A continuación algunas pruebas con los selectores:
 
+`kubectl get pods --show-labels -l estado=desarrollo`{{execute}}
+
+`kubectl get pods -show-labels -l estado=testing`{{execute}}
+
+`kubectl get pods --show-labels -l responsable!=juan`{{execute}}
+
+`kubectl get pods --show-labels -l 'estado in(desarrollo)'`{{execute}}
+
+`kubectl get pods --show-labels -l 'estado in(desarrollo,testing)'`{{execute}}
+
+`kubectl get pods --show-labels -l 'estado notin(desarrollo)'`{{execute}}
+
+`kubectl delete pods -l estado=desarrollo`{{execute}}

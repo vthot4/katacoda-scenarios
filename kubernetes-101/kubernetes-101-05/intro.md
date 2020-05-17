@@ -1,7 +1,6 @@
-# Deployment 101
+# Labels y Selectors 101
 
 **OBJETIVOS**
 
-- Entender el concepto de deployment.
-- Aprender a crear Deployments.
-- Actualizar deployments.
+- Entender los conceptos de Labels y selector.
+- Aprender a crear labels.

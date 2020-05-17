@@ -1,34 +1,66 @@
-## Actualizando el deployment
+## Labels
 
-Vamos actualizar el deployment para que despliegue la imagen nginx 1.8. Para ello usaremos el siguiente yaml:
+Para nuestra primera prueba, vmaos a usar el siguiente *yaml*:
 
 ```yaml
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Pod
 metadata:
-  name: nginx-deployment
+  name: tomcat
+  labels:
+    estado: "desarrollo"
 spec:
-  selector:
-    matchLabels:
-      app: nginx
-  replicas: 2
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:1.8 # Actualiza la versión de nginx de 1.7.9 a 1.8
-        ports:
-        - containerPort: 80
-
+  containers:
+   - name: tomcat
+     image: tomcat
 ```
 
-Para aplicar el update:
+En este caso vamos a levantar un tomcat. Para ello:
 
-`kubectl apply -f kubernetes_101_lab/deplyment/lab1/deployment-update.yaml`{{execute}}
+`kubectl apply -f kubernetes_101_lab/labels/lab1/tomcat.yaml`{{execute}}
 
-Podemos comprobar como el deployment crea unos nuevos Pods con la nueva imagen mientras va eliminando los Pods con especificación antigua.
+Podemos ver los Pods desplegados:
 
-`kubectl get pods -l app=nginx`{{execute}}
+`kubectl get pods -o wide`{{execute}}
+
+Para ver la etiquetas:
+
+`kubectl get pod tomcat --show-labels`{{execute}}
+
+Para crear una nueva columna con la etiqueta estado:
+
+`kubectl get pod tomcat --show-labels -L estado`{{execute}}
+
+
+
+## ADD LABEL
+
+`kubectl label pod tomcat responsable=sistemas`{{execute}}
+
+Podemos ver las etiquetas:
+
+`kubectl get pod tomcat --show-labels`{{execute}}
+
+
+
+## RE-WRITE LABEL
+
+Cambiaremos el valor de la etiqueta de la siguiente forma:
+
+`kubectl label --overwrite pod tomcat estado=test`{{execute}}
+
+`kubectl get pod tomcat --show-labels`{{execute}}
+
+
+
+## DELETE LABEL
+
+Para borrar una etiqueta:
+
+`kubectl label pod tomcat responsable-`{{execute}}
+
+`kubectl get pod tomcat --show-labels`{{execute}}
+
+
+
+Nota: Aunque podamos hacerlo todo de forma imperativa, deberíamos acostumbrarnos a hacerlo de forma declarativa.

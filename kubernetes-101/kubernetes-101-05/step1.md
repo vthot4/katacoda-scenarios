@@ -25,59 +25,24 @@ Abrimos Octant. Para acceder, seleccionaos en la parte superior del terminal web
 
 ## Introducción
 
-
-
-
-
-
-
-## Creando nuestro primer deployment.
-
-En el siguiente ejemplo vamos crear un deployment que nos permitirá desplegar una imágen de Docker nginx:1.7.9
+Las etiquetas son pares de clave/valor que se asocian a los objetos, como los pods. El propósito de las etiquetas es permitir identificar atributos de los objetos que son relevantes y significativos para los usuarios, pero que no tienen significado para el sistema principal. Se puede usar las etiquetas para organizar y seleccionar subconjuntos de objetos. Las etiquetas se pueden asociar a los objetos a la hora de crearlos y posteriormente modificarlas o añadir nuevas. Cada objeto puede tener un conjunto de etiquetas clave/valor definidas, donde cada clave debe ser única para un mismo objeto.
 
 ```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-deployment
-spec:
-  selector:
-    matchLabels:
-      app: nginx
-  replicas: 2 # indica al controlador que ejecute 2 pods
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:1.7.9
-        ports:
-        - containerPort: 80
+"metadata": {
+  "labels": {
+    "key1" : "value1",
+    "key2" : "value2"
+  }
+}
 ```
 
-Podemos verlo en la máquina:
+Las etiquetas permiten consultar y monitorizar los objetos de forma más eficiente y son ideales para su uso en UIs y CLIs.
 
-`cat kubernetes_101_lab/deplyment/lab1/deployment.yaml`{{execute}}
+Al contrario que los nombres y UIDs, las etiquetas no garantizan la unicidad. En general, se espera que muchos objetos compartan la(s) misma(s) etiqueta(s).
 
-Desplegamos el deployment mediante: 
+A través del selector de etiqueta, el cliente/usuario puede identificar un conjunto de objetos. El selector de etiqueta es la primitiva principal de agrupación en Kubernetes.
 
-`kubectl apply -f kubernetes_101_lab/deplyment/lab1/deployment.yaml`{{execute}}
+La API actualmente soporta dos tipos de selectores: basados en igualdad y basados en conjunto. Un selector de etiqueta puede componerse de múltiples requisitos separados por coma. En el caso de múltiples requisitos, todos ellos deben ser satisfechos de forma que las comas actúan como operadores AND (&&) lógicos.
 
-Vemos la información asociada al deployment:
-
-`kubectl get deploy`{{execute}}
-
-`kubectl describe deployment nginx-deployment`{{execute}}
-
-Vamos a listar los Pods creados por el deployment usando para ello el label *app=nginx*
-
-`kubectl get pods -l app=nginx`{{execute}}
-
-Podemos obtener información de cualquiera de los pod mediante describe
-
-```bash
-kubectl describe pod <pod-name>
-```
+La semántica de selectores vacíos o no espefificados es dependiente del contexto, y los tipos de la API que utilizan los selectores deberían documentar su propia validación y significado.
 
