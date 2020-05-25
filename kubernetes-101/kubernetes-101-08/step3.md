@@ -21,6 +21,8 @@ spec:
 
 Creamos el directorio del volumen:
 
+`cd`{{execute}}
+
 `mkdir data`{{execute}}
 
 Para crear nuestro pv:
